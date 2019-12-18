@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Scraping With Mongoose</title>
-   
-  </head>
-  <body>
-    <div id="wrapper">
-      <h2>News Scraper</h2>
-      <div id="articles">
-          <H2>ARTICLES GO HERE</H2>
-          <Button id="scrape"> Scrape</Button>
-          <button id="delete" class="btn btn-lg btn-danger text-white p-1 mt-2" type="submit">Delete the
-            news!</button>
-        <a href="/saved-articles" class="btn btn-lg p-1 btn-info mt-2">Go to saved articles</a>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand text-primary">News Scraper</a>
+        <form class="form-inline">
+            <button class="btn btn-outline-primary my-2 my-sm-0" href="/articles/saved" type="submit">Saved
+                Articles</button>
+        </form>
+    </nav>
+    <div class="jumbotron jumbotron-fluid" id="jumbotron-image">
+        <div class="container">
+        </div>
       </div>
-      <div id="notes"></div>
+    <div class="container">
+        <div id="wrapper">
+            <div id="articles">
+                <H2>New York Times: Current Events</H2>
+                <Button id="scrape" class="btn btn-lg btn-primary text-white p-1 mt-2"> Scrape</Button>
+                <button id="delete" class="btn btn-lg btn-primary text-white p-1 mt-2" type="submit">Delete the
+                    news!</button>
+            </div>
+            <div id="notes"></div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
-  </body>
+</body>
+
 </html>
