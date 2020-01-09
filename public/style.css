@@ -17,9 +17,13 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 .card{
     padding: 20px 10px;
     margin: 10px 10px;
+    box-shadow: 2px 2px 2px 2px rgb(114, 113, 113);
+}
+.card-title{
+    min-height: 72px;
 }
 .card-text{
-    min-height: 100px;
+    min-height: 120px;
 }
 .saveArticle-button{
    width: 50%;

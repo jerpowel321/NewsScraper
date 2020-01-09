@@ -12,6 +12,19 @@ $("#scrape").on("click", function(event) {
     });
 });
 
+// event listener on the "delete" button to delete the unsaved articles
+$("#delete").on("click", function(event) {
+    // prevent the page to refresh
+    event.preventDefault();
+    // post request to delete the articles that haven't been saved
+    $.ajax("/delete-articles", {
+        method: "POST"
+    }).then(function() {
+        // reload the page
+        location.reload();
+    });
+})
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
     console.log(data)
@@ -19,7 +32,7 @@ $.getJSON("/articles", function(data) {
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
       $("#articlesContainer").append(
-          "<div class='card' style='width: 20rem; <div class='card-body'><h5 class='card-title' data-id='" + data[i]._id + "'>" + data[i].title + "</h5><p class='card-text'>"+ data[i].description + "</p><div><a class='mr-2 btn btn-outline-primary my-2 my-sm-0' target='_blank' href=https://www.nytimes.com/"  + data[i].link + "> Link to Article </a><button class='saveArticle-button btn btn-md btn-primary text-white p-1'>Save Article</button></div></div></div>");
+          "<div class='card' style='width: 20rem; <div class='card-body'><h5 class='card-title' data-id='" + data[i]._id + "'>" + data[i].title + "</h5><p class='card-text'>"+ data[i].description + "</p><div><a class='mr-2 btn btn-outline-primary my-2 my-sm-0' target='_blank' href=https://www.nytimes.com"  + data[i].link + "> Link to Article </a><button class='saveArticle-button btn btn-md btn-primary text-white p-1'>Save Article</button></div></div></div>");
     }
   });
 

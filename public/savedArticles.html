@@ -3,42 +3,48 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
+    <title>Saved Articles</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gelasio&display=swap" rel="stylesheet">
-    <script src="https://use.fontawesome.com/c039c9bce9.js"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand text-primary">News Scraper</a>
+        <a class="navbar-brand text-primary">Saved Articles</a>
         <form class="form-inline">
-            <button class="btn btn-outline-primary my-2 my-sm-0" href="/saved-articles" type="submit">Saved
-                Articles</button>
+            <button class="btn btn-outline-primary my-2 my-sm-0" href="index.html" type="submit">Back to the News</button>
         </form>
     </nav>
     <div class="jumbotron jumbotron-fluid" id="jumbotron-image">
         <div class="container">
         </div>
-    </div>
+      </div>
     <div class="container">
         <div id="wrapper">
-            <div id="articles">
-                <div class="text-center">
-                    <H2>New York Times: Current Events</H2>
-                    <Button id="scrape" class="btn btn-lg btn-primary text-white p-1 mt-2"> Scrape</Button>
-                    <button id="delete" class="btn btn-lg btn-primary text-white p-1 mt-2" type="submit">Trash the old news!</button>
-                </div>
-                <div id="articlesContainer">
-
+            <div id="articles-saved">
+                <H2>Saved Articles</H2>
+                
+            </div>
+            <div id="notes"></div>
+        </div>
+        <div class="modal" id="modal-notes" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="header-note" class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="new-note"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
-            <div id="saved-articles"></div>
-            <div id="notes"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"

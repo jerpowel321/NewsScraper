@@ -99,6 +99,55 @@ app.get("/articles", function(req,res)
         });
 });
 
+// define the route to delete all the articles that haven't been saved
+app.post("/delete-articles", function(req, res) {
+    // delete many - all the unsaved article
+    db.Article.deleteMany({saved: false})
+        .then(function(dbArticle) {
+            // View the updated result in the console
+            console.log(dbArticle);
+        })
+        .catch(function(err) {
+            // If an error occurred, log it
+            console.log(err);
+        })
+
+    // redirect to the root route
+    res.redirect("/");
+});
+
+// route to save an article when its "save" button has been clicked
+app.post("/save-article/:id", function(req, res) {
+    // find and update the article corresponding to the id
+    db.Article.findOneAndUpdate({ _id: req.params.id }, { saved: true }, { new: true })
+        .then(function(dbArticle) {
+            // View the updated result in the console
+            console.log(dbArticle);
+        })
+        .catch(function(err) {
+            // If an error occurred, log it
+            console.log(err);
+        })
+
+    // end the connection
+    res.end();
+});
+
+// route to display the "saved articles" page
+app.get("/saved-articles", function(req, res) {
+    db.Article.find({saved:true})
+        .then(function(dbArticle) {
+            console.log("Saved Articles")
+            console.log(dbArticle);
+            // If we were able to successfully find Articles
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            // If an error occurred, log it
+            console.log(err);
+        })
+});
+
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req,res){
     db.Article.findOne({_id: req.params.id})
