@@ -18,5 +18,5 @@ To build this app, I used the following technologies:
 
 Code snippet showing how to create the "Article" model using the "mongoose" node package
 
-![Article Model code snippit](/public/images/articleModel.png =250x)
+![Article Model code snippit](/public/images/articleModel.png)
 
