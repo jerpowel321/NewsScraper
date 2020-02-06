@@ -7,36 +7,49 @@ h1, h2, h3, h4, h5, h6, p, a, button {
 body {
     background-color:	#F0F0F0;
 }
-#jumbotron-image{
-    /* background-image: url("https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
-    background-repeat: no-repeat;
-    min-height: 30vh;
-}
 
-#articlesContainer, #articlesSavedContainer{
+#articlesContainer, #articles-saved{
+    min-height: 80vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
     padding-bottom: 100px;
     background-image: url("https://images.unsplash.com/photo-1566378246598-5b11a0d486cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80");
     padding-top: 40px;
 }
 .card{
-    padding: 20px 10px;
+    padding: 30px 20px;
     margin: 25px 25px;
     box-shadow: 2px 2px 2px 2px rgb(114, 113, 113);
+    max-height: 320px;
 }
+
+h5{
+    color:#003366;
+}
+
 .card-title{
     min-height: 72px;
 }
 .card-text{
     min-height: 120px;
 }
+#articles-saved .card-text{
+    min-height: 90px;
+}
+
 .saveArticle-button{
    width: 50%;
+}
+.note-button{
+    width:100%;
 }
 
 footer{
     height: 80px;
+}
+
+.textarea {
+    border: 1px solid green;
 }

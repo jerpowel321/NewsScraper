@@ -46,7 +46,9 @@ $.getJSON("/saved-articles", function (data) {
         if (data[i].saved === true) {
             // Display the apropos information on the page
             $("#articles-saved").append(
-                "<div class='card' style='width: 20rem; <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].description + "</p><div><a class='mr-2 btn btn-outline-primary my-2 my-sm-0' target='_blank' href=https://www.nytimes.com" + data[i].link + "> Link to Article </a><button class='delete-save-article btn btn-md btn-primary text-white p-1' type='submit' data-id='" + data[i]._id + "'>Delete Article</button></div></div></div>");
+                "<div class='card' style='width: 20rem; <div class='card-body'><h5 class='card-title'>" + data[i].title + "</h5><p class='card-text'>" + data[i].description + "</p><div><a class='mr-3 btn btn-outline-primary my-2 my-sm-0' target='_blank' href=https://www.nytimes.com" + data[i].link + "> Link to Article </a><button class='delete-save-article btn btn-md btn-primary  btn-primary text-white ' type='submit' data-id='" + data[i]._id + "'>Delete Article</button> " +
+                // <div class='text-center mt-1'><button class='mr-2 btn btn-outline-primary my-2 my-sm-0 note-button' + data-id=" + data[i]._id + ">Add Note</button></div></div>
+               "</div></div>");
         }
     }
 });
@@ -84,3 +86,63 @@ $(document).on("click", ".delete-save-article", function(event) {
         location.reload();
     });
 });
+
+// event listener on the "note" button to add note to a saved article
+$(document).on("click", ".note-button", function() {
+    // Empty the notes from the note section so we don't get a new text area
+    // each time we click on the "note" button
+    $("#new-note").empty();
+    // grab the id of the article whose button has been clicked
+    var articleID = $(this).data("id");
+    // console.log(articleID);
+  
+    // GET request 
+    $.ajax("/note-article/" + articleID, {
+        method: "GET"
+    }).then(function(data) {
+        console.log(data);
+
+        // add a header to the modal
+        $("#header-note").text("Note for: '" + data.title +"'");
+        // add a textarea to be able to write the note
+        $("#new-note").append("<textarea class='w-100' id='body-input' name='body'></textarea>");
+        // add a button to save the note
+        $("#new-note").append("<br/><button class='btn btn-sm btn-primary save-note' data-id='" + data._id + "'>Save Note</button>");
+
+        // display the modal
+        $("#modal-notes").modal("toggle");
+  
+        // If there are notes in the article
+        if (data.notes) {
+            // loop through the notes and display them
+            for (var i = 0; i < data.notes.length; i++) {
+                // Place the body of the note in the body textarea
+                $("#new-note").prepend("<p>" + data.notes[i].body + "</p><hr/>");
+            }   
+        }
+    });
+});
+
+// event listener on the "save-note" button to save the note
+$(document).on("click", ".save-note", function() {
+    // grab the id of the article whose button has been clicked
+    var articleID = $(this).data("id");
+
+    // grab the text entered
+    var data = {
+        body: $("#body-input").val().trim()
+    }
+
+    // post request
+    $.ajax("/note-article/" + articleID, {
+        method: "POST",
+        data: data
+    }).then(function(data) {
+        // Log the response
+        console.log(data);
+        // close the modal
+        $("#modal-notes").modal("toggle");
+    });
+});
+
+
