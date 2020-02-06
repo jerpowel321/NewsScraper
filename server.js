@@ -174,6 +174,24 @@ app.post("/articles/:id", function(req,res){
     });
 });
 
+// define the route to delete a saved article
+app.post("/delete-article/:id", function(req, res) {
+    // delete one - the saved article whose "delete-save-article" button has been clicked
+    db.Article.deleteOne({ _id: req.params.id })
+        .then(function(dbArticle) {
+            // View the updated result in the console
+            console.log(dbArticle);
+        })
+        .catch(function(err) {
+            // If an error occurred, log it
+            console.log(err);
+        })
+
+    // end the connection
+    res.end();
+});
+
+
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
 });
